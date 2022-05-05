@@ -7,7 +7,7 @@ Need to have Maven installed (for MacOS run $ brew install maven)
 Need to be [IntelliJ IDEA](https://www.jetbrains.com/idea/) installed
 
 # Run tests
-run the command $mvn surefire-report:report in the root of the project
+run the command $ mvn surefire-report:report in the root of the project
 or run tests in the IDEA, they are here /planner/src/test/java/toDoTests
 
 #Test Results
