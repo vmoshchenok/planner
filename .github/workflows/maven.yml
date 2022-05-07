@@ -30,4 +30,4 @@ jobs:
       run: allure generate -c target/allure-results
       continue-on-error: true
     - name: Start nginx
-      run: docker run --rm -d -p 80:80 --name web -v ./allure-report:/usr/share/nginx/html nginx
+      run: docker run --rm -d -p 80:80 --name web -v $PWD/allure-report:/usr/share/nginx/html nginx
