@@ -22,6 +22,7 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn  -Dchromeoptions.args=headless -B package --file pom.xml
+      continue-on-error: true
     - name: Stop nginx
       run: docker container stop web
     - name: Generate allure report
