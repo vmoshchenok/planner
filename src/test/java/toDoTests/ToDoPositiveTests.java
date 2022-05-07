@@ -2,6 +2,10 @@ package toDoTests;
 
 import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,7 +16,9 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
-
+@Epic("ToDo")
+@Feature("ToDo list")
+@Story("ToDo list positive scenarios")
 public class ToDoPositiveTests {
     private ToDoPage toDoPage;
 
@@ -27,19 +33,21 @@ public class ToDoPositiveTests {
         Selenide.closeWebDriver();
     }
 
-    @Test(testName = "TC#01 Verifying the ToDo page layout")
+
+    @Test(description = "TC#01 Verifying the ToDo page layout")
+    @Description("first tesr")
     public void verifyPageLayOut() {
         toDoPage.checkPageLayout();
     }
 
-    @Test(testName = "TC#02 Verifying that a new item is added to the ToDo list")
+    @Test(description = "TC#02 Verifying that a new item is added to the ToDo list")
     public void verifyCreatingNewItem() {
         String item = generateItem();
 
         toDoPage.createToDoItem(item);
         toDoPage.checkIfToDoItemAdded(item);
     }
-    @Test(testName = "TC#03 Verifying that it's possible to complete items and clear completed items")
+    @Test(description = "TC#03 Verifying that it's possible to complete items and clear completed items")
     public void verifyCompletingItemScenario() {
         String item = generateItem();
 
@@ -50,7 +58,7 @@ public class ToDoPositiveTests {
         toDoPage.checkIfCompletedItemsRemoved();
     }
 
-    @Test(testName = "TC#04 Verifying that it's possible to delete item")
+    @Test(description = "TC#04 Verifying that it's possible to delete item")
     public void verifyDeletingItemScenario() {
         String item = generateItem();
 
@@ -59,7 +67,7 @@ public class ToDoPositiveTests {
         toDoPage.checkIfToDoItemDeleted(item);
     }
 
-    @Test(testName = "TC#05 Verifying the ability to create a few items")
+    @Test(description = "TC#05 Verifying the ability to create a few items")
     public void verifyCreatingFewItems() {
         toDoPage.createFewItems(generateItemsCollection(5));
         toDoPage.checkCountOfLeftItems("5");

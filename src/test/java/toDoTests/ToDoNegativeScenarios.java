@@ -1,6 +1,9 @@
 package toDoTests;
 
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,6 +11,9 @@ import po.ToDoPage;
 
 import static com.codeborne.selenide.Selenide.open;
 
+@Epic("ToDo")
+@Feature("ToDo list")
+@Story("ToDo list negative scenarios")
 public class ToDoNegativeScenarios {
     private ToDoPage toDoPage;
 
@@ -22,20 +28,20 @@ public class ToDoNegativeScenarios {
         Selenide.closeWebDriver();
     }
 
-    @Test(testName = "TC#01 Verifying that it is impossible to save an empty item")
+    @Test(description = "TC#01 Verifying that it is impossible to save an empty item")
     public void verifySavingEmptyItem() {
         toDoPage.createToDoItem("");
         toDoPage.checkIfNoItemsPresent();
     }
 
-    @Test(testName = "TC#02 Verifying that it is impossible to edit an empty item")
+    @Test(description = "TC#02 Verifying that it is impossible to edit an empty item")
     public void verifyEditingEmptyItems() {
         toDoPage.createToDoItem("Item for editing");
         toDoPage.editItem("Item for editing", "");
         toDoPage.checkIfNoItemsPresent(); //Item with empty text should be removed, but it's a bug now - empty item is present
     }
 
-    @Test(testName = "TC#04 Verifying that JavaScript text is displayed as plain text")
+    @Test(description = "TC#04 Verifying that JavaScript text is displayed as plain text")
     public void verifyAbilityToAddJavaScript() {
         String item = "<script>alert('Hello')</script>";
 
@@ -46,7 +52,7 @@ public class ToDoNegativeScenarios {
         toDoPage.checkIfCompletedItemsRemoved();
     }
 
-    @Test(testName = "TC#04 Verifying that long text could be")
+    @Test(description = "TC#04 Verifying that long text could be")
     public void verifyAbilityToAddLongText() {
               String item = "Amsterdam was founded at the Amstel, that was dammed to control flooding; the city's name derives " +
                 "from the Amstel dam.[15] Originating as a small fishing village in the late 12th century, " +
